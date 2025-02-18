@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Link Verification and Shortening Service</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles for mobile services accordion */
+        .mobile-services {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            position: fixed;
+            bottom: 56px; /* Height of the bottom navbar */
+            left: 0;
+            right: 0;
+            z-index: 1020;
+        }
+        .mobile-services.show {
+            max-height: 500px;
+            box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .service-toggle[aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+        
+        /* Add padding to body on mobile to account for fixed bottom navbar */
+        @media (max-width: 991.98px) {
+            body {
+                padding-bottom: 56px;
+            }
+            
+            /* Better spacing for mobile view */
+            .section-mobile {
+                padding: 20px 15px;
+                margin-bottom: 15px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            
+            .page-header-mobile {
+                padding: 25px 0;
+                background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navbar - Only visible on desktop -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm d-none d-lg-block">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold" href="home">Linkify</a>
+            <!-- Navbar Links -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home" aria-label="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about" aria-label="About">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="verify">Link Verification</a></li>
+                            <li><a class="dropdown-item" href="news">Cyber Security News</a></li>
+                            <li><a class="dropdown-item" href="short">URL Shortener</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="feedback" aria-label="Search">Feedback</a>
+                    </li>
+                </ul>
+                 
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile header with logo - Only visible on mobile -->
+    <header class="d-lg-none bg-white shadow-sm p-3 d-flex justify-content-around align-items-center">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="home">Linkify</a>
+        </div>
+         
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header - Desktop vs Mobile different styling -->
+        <header class="text-center mb-5 d-none d-lg-block mt-4">
+            <h1 class="display-4">About Us</h1>
+        </header>
+        
+        <!-- Mobile-optimized header -->
+        <header class="text-center page-header-mobile d-lg-none">
+            <h1 class="h2 mb-0">About Us</h1>
+        </header>
+        
+        <main>
+            <!-- Desktop sections -->
+            <div class="d-none d-lg-block">
+                <section class="mb-4">
+                    <h2 class="mb-3">Our Mission</h2>
+                    <p class="lead">We aim to provide reliable and efficient link verification and shortening services to ensure the safety and convenience of our users.</p>
+                </section>
+                <section class="mb-4">
+                    <h2 class="mb-3">What We Offer</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-transparent">
+                            <strong>Link Verification:</strong> Check the safety and validity of your links.
+                        </li>
+                        <li class="list-group-item bg-transparent">
+                            <strong>Link Shortening:</strong> Shorten long URLs for easier sharing.
+                        </li>
+                        <li class="list-group-item bg-transparent">
+                            <strong>Link Analytics:</strong> Track the performance of your shortened links.
+                        </li>
+                    </ul>
+                </section>
+                <section class="mb-4">
+                    <h2 class="mb-3">Contact Us</h2>
+                    <p>If you have any questions or need support, feel free to <a href="contact.html" class="text-decoration-none">contact us</a>.</p>
+                </section>
+            </div>
+            
+            <!-- Mobile-optimized sections -->
+            <div class="d-lg-none">
+                <section class="section-mobile">
+                    <h2 class="h4 mb-3">Our Mission</h2>
+                    <p>We aim to provide reliable and efficient link verification and shortening services to ensure the safety and convenience of our users.</p>
+                </section>
+                <section class="section-mobile">
+                    <h2 class="h4 mb-3">What We Offer</h2>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary rounded-circle p-2 me-3">
+                            <i data-lucide="check-circle" class="text-white" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div>
+                            <strong>Link Verification</strong>
+                            <p class="mb-0 text-muted small">Check the safety and validity of your links</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary rounded-circle p-2 me-3">
+                            <i data-lucide="link" class="text-white" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div>
+                            <strong>Link Shortening</strong>
+                            <p class="mb-0 text-muted small">Shorten long URLs for easier sharing</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary rounded-circle p-2 me-3">
+                            <i data-lucide="bar-chart" class="text-white" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div>
+                            <strong>Cyber Security News</strong>
+                            <p class="mb-0 text-muted small">Stay updated with the latest threats and security news.</p>
+                        </div>
+                    </div>
+                </section>
+                 
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation for Mobile View -->
+    <nav class="navbar fixed-bottom navbar-light bg-white d-lg-none shadow-sm py-0">
+        <div class="container d-flex justify-content-around">
+            <a class="nav-link text-center py-1 active" href="home" aria-label="Home">
+                <i data-lucide="home" class="mb-0"></i>
+                <span class="d-block small">Home</span>
+            </a>
+            <a class="nav-link text-center py-1" href="about" aria-label="About">
+                <i data-lucide="info" class="mb-0"></i>
+                <span class="d-block small">About</span>
+            </a>
+            <a class="nav-link text-center py-1" href="service" aria-label="service">
+                <i data-lucide="briefcase" class="mb-0"></i>
+                <span class="d-block small">Services</span>
+            </a>
+            <a class="nav-link text-center py-1" href="feedback" aria-label="Feedback">
+                <i data-lucide="message-square" class="mb-0"></i>
+                <span class="d-block small">Feedback</span>
+            </a>
+        </div>
+    </nav>
+
+  
+   
+
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+        
+        // Function to toggle mobile services menu
+        function toggleServices() {
+            const servicesMenu = document.getElementById('mobileServices');
+            const toggleButton = document.querySelector('.service-toggle');
+            servicesMenu.classList.toggle('show');
+            
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+            toggleButton.setAttribute('aria-expanded', !isExpanded);
+        }
+    </script>
+</body>
+</html>

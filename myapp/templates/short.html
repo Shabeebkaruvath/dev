@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <!-- Favicon -->
+    <link rel="icon" href="path/to/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .url-shortener-container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .url-shortener-container input {
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .url-shortener-container button {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .url-shortener-container button:hover {
+            background-color: #0b5ed7;
+        }
+        .shortened-url {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .shortened-url a {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .shortened-url a:hover {
+            text-decoration: underline;
+        }
+        .mobile-services {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            position: fixed;
+            bottom: 56px; /* Height of the bottom navbar */
+            left: 0;
+            right: 0;
+            z-index: 1020;
+        }
+        .mobile-services.show {
+            max-height: 500px;
+            box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 991.98px) {
+            body {
+                padding-bottom: 56px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navbar - Only visible on desktop -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm d-none d-lg-block">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold" href="home">Linkify</a>
+            <!-- Navbar Links -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home" aria-label="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about" aria-label="About">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="verify">Link Verification</a></li>
+                            <li><a class="dropdown-item" href="news">Cyber Security News</a></li>
+                            <li><a class="dropdown-item" href="short">URL Shortener</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback" aria-label="Feedback">Feedback</a>
+                    </li>
+                </ul>
+                 
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile header with logo - Only visible on mobile -->
+    <header class="d-lg-none bg-white shadow-sm p-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="home">Linkify</a>
+        </div>
+    </header>
+
+    <!-- URL Shortener Section -->
+    <section class="container my-5">
+        <div class="url-shortener-container">
+            <h1 class="text-center display-5 fw-bold text-dark mb-4">URL Shortener</h1>
+            <input type="text" id="longUrl" placeholder="Enter your long URL" aria-label="Long URL">
+            <button id="shortenBtn">
+                <i data-lucide="link"></i> Shorten URL
+            </button>
+            <div class="shortened-url" id="shortenedUrl" style="display: none;">
+                <p>Your shortened URL:</p>
+                <a href="#" id="shortUrlOutput" target="_blank"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation for Mobile View -->
+    <nav class="navbar fixed-bottom navbar-light bg-white d-lg-none shadow-sm py-0">
+        <div class="container d-flex justify-content-around">
+            <a class="nav-link text-center py-1 active" href="home" aria-label="Home">
+                <i data-lucide="home" class="mb-0"></i>
+                <span class="d-block small">Home</span>
+            </a>
+            <a class="nav-link text-center py-1" href="about" aria-label="About">
+                <i data-lucide="info" class="mb-0"></i>
+                <span class="d-block small">About</span>
+            </a>
+            <a class="nav-link text-center py-1" href="service" aria-label="service">
+                <i data-lucide="briefcase" class="mb-0"></i>
+                <span class="d-block small">Services</span>
+            </a>
+            <a class="nav-link text-center py-1" href="feedback" aria-label="Feedback">
+                <i data-lucide="message-square" class="mb-0"></i>
+                <span class="d-block small">Feedback</span>
+            </a>
+        </div>
+    </nav>
+
+    
+
+    <!-- Footer -->
+    <footer class="bg-white text-center py-3 shadow-sm">
+        <div class="container">
+            <p class="mb-0">&copy; 2023 Linkify. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Initialize Lucide Icons -->
+    <script>
+       lucide.createIcons();
+
+        // URL Shortener Functionality (Example)
+        document.getElementById('shortenBtn').addEventListener('click', function () {
+            const longUrl = document.getElementById('longUrl').value;
+            if (longUrl) {
+                // Example: Simulate URL shortening
+                const shortUrl = `https://linkify.com/${Math.random().toString(36).substring(2, 8)}`;
+                document.getElementById('shortUrlOutput').textContent = shortUrl;
+                document.getElementById('shortUrlOutput').href = shortUrl;
+                document.getElementById('shortenedUrl').style.display = 'block';
+            } else {
+                alert('Please enter a valid URL.');
+            }
+        });
+
+        // Function to toggle mobile services menu
+        function toggleServices() {
+            const servicesMenu = document.getElementById('mobileServices');
+            const toggleButton = document.querySelector('.service-toggle');
+            servicesMenu.classList.toggle('show');
+            
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+            toggleButton.setAttribute('aria-expanded', !isExpanded);
+        }
+    </script>
+</body>
+</html>
